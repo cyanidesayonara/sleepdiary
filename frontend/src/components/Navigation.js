@@ -6,11 +6,7 @@ const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <LinkContainer to="/">
-<<<<<<< HEAD
         <Navbar.Brand>Sleep diary</Navbar.Brand>
-=======
-        <Navbar.Brand>LOGO</Navbar.Brand>
->>>>>>> Add react-router & react-router-bootstrap
       </LinkContainer>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
