@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import eg.sleepdiary.domain.SleepPeriod;
 import eg.sleepdiary.domain.User;
 import eg.sleepdiary.domain.UserRepository;
 
@@ -32,6 +32,9 @@ public class UserApiController {
 	
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//get user by id
 	@GetMapping("/users/{id}")
@@ -52,6 +55,7 @@ public class UserApiController {
 	//create new user
 	@PostMapping("/users/")
 	public ResponseEntity<?> postUser(@RequestBody User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		User createdUser = userRepo.save(user);
 		return new ResponseEntity<User>(createdUser, HttpStatus.OK);
 	}
@@ -63,11 +67,11 @@ public class UserApiController {
         User user = userRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + id));
 
-        user.setName(userDetails.getName());
+        user.setUserName(userDetails.getUserName());
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
-        user.setPassword(userDetails.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setUserLevel(userDetails.getUserLevel());
         final User updatedUser = userRepo.save(user);
         return ResponseEntity.ok(updatedUser);

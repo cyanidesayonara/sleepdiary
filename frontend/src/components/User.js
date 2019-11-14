@@ -32,7 +32,7 @@ const User = ({
    function checkPassword(word) {
      //must contain at least 1 lowercase, uppercase, number, special character (reserved ones are escaped)
      //at least 8 digits long
-    let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
      return passwordRegex.test(word)
    }
   
@@ -70,7 +70,7 @@ const User = ({
               User information for user { user.id }
             </a> 
            <h2>Information</h2> 
-            <p>Username: { user.name }</p>
+            <p>Username: { user.userName }</p>
             <p>First name: { user.firstName }</p>
             <p>Last name: { user.lastName }</p>
             <p>Email: { user.email }</p>

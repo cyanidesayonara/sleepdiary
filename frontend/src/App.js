@@ -64,7 +64,6 @@ const App = () => {
       .then(externals => setExts(externals))
   }
 
-<<<<<<< HEAD
   const fetchUsers = () => {
     userService
     .getAll()
@@ -78,8 +77,6 @@ const App = () => {
     }
   }
 
-=======
->>>>>>> Add react-router & react-router-bootstrap
   const addSleepPeriod = () => (event) => {
     event.preventDefault()
     if (startTime && endTime) {
@@ -251,7 +248,6 @@ const App = () => {
     setNoPeriods(Number(value))
   }
   return (
-<<<<<<< HEAD
     <div className='container'>
       <Router>
         <Navigation />
@@ -335,91 +331,92 @@ const App = () => {
               />
             </>
           </Route>
-=======
-    <div className="container">
-      <Header changeView={changeView} />
-      <Nav changeView={changeView} />
-      <Router>
-        <Navigation />
-        <Switch>
-          <Route exact path="/">
-            <>
-              <DateSelect
-                startDate={dateFilter}
-                handleDateChange={handleDatePickerChange}
-                sleepPeriods={sleepPeriods}
-              />
-              <FilteredView
-                date={dateFilter}
-                sleeps={sleepPeriods}
-                comments={comments}
-                exts={exts}
-                updateSleepPeriod={updateSleepPeriod}
-                removeSleepPeriod={removeSleepPeriod}
-                deleteComment={deleteComment}
-                updateComment={updateComment}
-              />
-              <SleepPeriods
-                sleepPeriods={filteredSleepPeriods}
-                addSleepPeriod={addSleepPeriod}
-                startTime={startTime}
-                setStartTime={setStartTime}
-                endTime={endTime}
-                setEndTime={setEndTime}
-                filterStartDate={filterStartDate}
-                setFilterStartDate={setFilterStartDate}
-                filterEndDate={filterEndDate}
-                setFilterEndDate={setFilterEndDate}
-                updateSleepPeriod={updateSleepPeriod}
-                removeSleepPeriod={removeSleepPeriod}
-              />
-              <Comments
-                comments={comments}
-                comment={comment}
-                handleCommentChange={handleCommentChange}
-                commentDate={commentDate}
-                handleDateChange={handleCommentDateChange}
-                sleepQuality={sleepQuality}
-                handleQualityChange={handleQualityChange}
-                addComment={addComment}
-                deleteComment={deleteComment}
-                updateComment={updateComment}
-              />
-              <Externals
-                externals={exts}
-                addExternal={addExt}
-                externalType={externalType}
-                handleExternalTypeChange={handleExtTypeChange}
-                externalDate={externalDate}
-                handleDateChange={handleExtDateChange}
-                externalQuantityValue={quantity}
-                handleQuantityChange={handleQuantityChange}
-                deleteExternal={deleteExternal}
-                updateExternal={updateExternal}
-              />
-            </>
-          </Route>
-          <Route path="/settings">
-            <User
-              user={user}
-              name={name}
-              setName={setName}
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              updateUser={updateUser}
-            />
-            <Settings />
-          </Route>
->>>>>>> Add react-router & react-router-bootstrap
         </Switch>
       </Router>
     </div>
+  //   <div className="container">
+  //   <Header changeView={changeView} />
+  //   <Nav changeView={changeView} />
+  //   <Router>
+  //     <Navigation />
+  //     <Switch>
+  //       <Route exact path="/">
+  //         <>
+  //           <DateSelect
+  //             startDate={dateFilter}
+  //             handleDateChange={handleDatePickerChange}
+  //             sleepPeriods={sleepPeriods}
+  //           />
+  //           <FilteredView
+  //             date={dateFilter}
+  //             sleeps={sleepPeriods}
+  //             comments={comments}
+  //             exts={exts}
+  //             updateSleepPeriod={updateSleepPeriod}
+  //             removeSleepPeriod={removeSleepPeriod}
+  //             deleteComment={deleteComment}
+  //             updateComment={updateComment}
+  //           />
+  //           <SleepPeriods
+  //             sleepPeriods={filteredSleepPeriods}
+  //             addSleepPeriod={addSleepPeriod}
+  //             startTime={startTime}
+  //             setStartTime={setStartTime}
+  //             endTime={endTime}
+  //             setEndTime={setEndTime}
+  //             filterStartDate={filterStartDate}
+  //             setFilterStartDate={setFilterStartDate}
+  //             filterEndDate={filterEndDate}
+  //             setFilterEndDate={setFilterEndDate}
+  //             updateSleepPeriod={updateSleepPeriod}
+  //             removeSleepPeriod={removeSleepPeriod}
+  //           />
+  //           <Comments
+  //             comments={comments}
+  //             comment={comment}
+  //             handleCommentChange={handleCommentChange}
+  //             commentDate={commentDate}
+  //             handleDateChange={handleCommentDateChange}
+  //             sleepQuality={sleepQuality}
+  //             handleQualityChange={handleQualityChange}
+  //             addComment={addComment}
+  //             deleteComment={deleteComment}
+  //             updateComment={updateComment}
+  //           />
+  //           <Externals
+  //             externals={exts}
+  //             addExternal={addExt}
+  //             externalType={externalType}
+  //             handleExternalTypeChange={handleExtTypeChange}
+  //             externalDate={externalDate}
+  //             handleDateChange={handleExtDateChange}
+  //             externalQuantityValue={quantity}
+  //             handleQuantityChange={handleQuantityChange}
+  //             deleteExternal={deleteExternal}
+  //             updateExternal={updateExternal}
+  //           />
+  //         </>
+  //       </Route>
+  //       <Route path="/settings">
+  //         <User
+  //           user={user}
+  //           name={name}
+  //           setName={setName}
+  //           firstName={firstName}
+  //           setFirstName={setFirstName}
+  //           lastName={lastName}
+  //           setLastName={setLastName}
+  //           email={email}
+  //           setEmail={setEmail}
+  //           password={password}
+  //           setPassword={setPassword}
+  //           updateUser={updateUser}
+  //         />
+  //         <Settings />
+  //       </Route>
+  //     </Switch>
+  //   </Router>
+  // </div>    
   );
 }
 

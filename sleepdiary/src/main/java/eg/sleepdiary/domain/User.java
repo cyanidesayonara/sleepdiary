@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.data.annotation.Transient;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,9 +30,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String name, firstName, lastName, email;
+	private String userName, firstName, lastName, email;
 	private String password;
 	private UserLevel userLevel;
+
+	@Transient
+	private String passwordConfirm;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<Comment> comments;
@@ -47,9 +52,9 @@ public class User {
 	@OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
 	private List<Permission> supervisor = new ArrayList<>();
 	
-	public User(String name, String firstName, String lastName, String email, 
+	public User(String userName, String firstName, String lastName, String email, 
 			String password, UserLevel userLevel) {
-		this.name = name;
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -57,9 +62,9 @@ public class User {
 		this.userLevel = userLevel;
 	}
 
-	public User(String name, String firstName, String lastName, String email, 
+	public User(String userName, String firstName, String lastName, String email, 
 			String password, UserLevel userLevel, Permission... permissions) {
-		this.name = name;
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

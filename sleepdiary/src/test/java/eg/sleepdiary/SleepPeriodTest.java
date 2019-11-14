@@ -20,13 +20,13 @@ public class SleepPeriodTest {
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private User user;
-	private final String username = "testi";
+	private final String userName = "testi";
 
 	@Before
 	public void init() {
 		start = LocalDateTime.of(2019, 10, 1, 0, 0);
 		end = LocalDateTime.of(2019, 10, 2, 0, 0);
-		user = new User(username, "user", "name", "email", username, UserLevel.BASIC);
+		user = new User(userName, userName, userName, userName, userName, UserLevel.BASIC);
 		testPeriod = new SleepPeriod(start, end, user);
 	}
 

@@ -51,12 +51,12 @@ public class Permission implements Serializable {
 			return false;
 		}
 		Permission that = (Permission) o;
-		return Objects.equals(user.getName(), that.user.getName()) &&
-				Objects.equals(supervisor.getName(), that.supervisor.getName());
+		return Objects.equals(user.getUserName(), that.user.getUserName()) &&
+				Objects.equals(supervisor.getUserName(), that.supervisor.getUserName());
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(user.getName(), supervisor.getName());
+		return Objects.hash(user.getUserName(), supervisor.getUserName());
 	}
 }
