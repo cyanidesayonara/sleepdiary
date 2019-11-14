@@ -1,1 +1,1 @@
-web: java -jar sleepdiary/target/sleepdiary-0.0.1-SNAPSHOT.jar
+web: java -Dspring.datasource.url=jdbc:postgresql://ec2-54-246-100-246.eu-west-1.compute.amazonaws.com:5432/dc3a0ni3gpf2jo?user=caaemhthymzmsg&password=2bbadf0bbba151e4d5d1b78224314d239c78839112c9e649ff632c9cd35bf73a&sslmode=require -jar sleepdiary/target/sleepdiary-0.0.1-SNAPSHOT.jar
