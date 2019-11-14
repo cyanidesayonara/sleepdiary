@@ -32,9 +32,6 @@ public class UserApiController {
 	
 	@Autowired
 	private UserRepository userRepo;
-
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//get user by id
 	@GetMapping("/users/{id}")
@@ -55,7 +52,6 @@ public class UserApiController {
 	//create new user
 	@PostMapping("/users/")
 	public ResponseEntity<?> postUser(@RequestBody User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		User createdUser = userRepo.save(user);
 		return new ResponseEntity<User>(createdUser, HttpStatus.OK);
 	}
@@ -71,7 +67,7 @@ public class UserApiController {
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
         user.setUserLevel(userDetails.getUserLevel());
         final User updatedUser = userRepo.save(user);
         return ResponseEntity.ok(updatedUser);

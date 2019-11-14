@@ -4,6 +4,7 @@ import sleepPeriodService from './services/sleepPeriods'
 import commentService from './services/comments'
 import externalService from './services/externals'
 import userService from './services/users'
+import accountService from './services/accounts'
 
 import SleepPeriods from './components/SleepPeriods'
 import Settings from './components/Settings'
@@ -68,6 +69,22 @@ const App = () => {
     userService
     .getAll()
     .then(users => setUser(users[0]))
+  }
+
+  const login = () => async (event) => {
+    event.preventDefault()
+
+    try {
+      const user = await accountService.login({
+        userName: "user",
+        password: "password"
+      })
+      console.log(user.data)
+      console.log(user.headers)
+      window.localStorage.setItem('user', JSON.stringify(user))
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const setCurrentPeriodStart = () => {
