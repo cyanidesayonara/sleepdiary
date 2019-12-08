@@ -148,8 +148,40 @@ käynnistämiseen tai käyttöön liittyy joitain muita toimenpiteitä tai toimi
 Usko tai älä, tulet tarvitsemaan tätä itsekin, kun tauon jälkeen palaat
 järjestelmän pariin !
 
-## Tietoturva
+## Tietosuojailmoitus
 
-Pohdintaa tietoturvasta.
+Tämä tietosuojailmoitus koskee Sleepdiary-palvelua ja henkilötietojen käsittelyä siinä. 
+
+### Palvelussa käsiteltävät henkilötiedot 
+
+- yksilöintitiedot: käyttäjätunnus, etunimi, sukunimi 
+- yhteystiedot: sähköpostiosoite 
+
+### Palvelussa käsiteltävät muut tiedot 
+
+- Palveluun syötetyt unijaksot, unen laatuun vaikuttaneet ulkopuoliset tekijät, kommentit ja vireystilan arviointi 
+- Tietojen tarkastelijan yhteystiedot 
+
+### Henkilötietojen käyttötarkoitus ja käsittelyperuste 
+
+Käytämme henkilötietoja ainoastaan käyttäjän yksilöimiseen. Palvelun tarjoaja ei luovuta tietoja kolmansille osapuolille. Palvelussa olevat tiedot pohjautuvat täysin henkilön itse ilmoittamiin tietoihin. Henkilö voi itse päättää jakaako tietonsa ensimerkiksi hoitosuhteesta vastaavalle taholle. 
+
+### Henkilötietojen suojaus ja säilytysaika 
+
+Henkilötietoihin pääsy on vain niillä henkilöillä, joille se työtehtäviensä vuoksi on tarpeen. Henkilötiedot on suojattu asiattomalta pääsyltä tai käsittelemiseltä.  
+
+Tietoja säilytetään palvelussa kuusi kuukautta viimeisen merkinnän tekemisestä tai kunnes käyttäjä itse pyytää tietojen poistamista. Tietojen poistumisesta lähetetään henkilölle muistutusviesti kuukautta ennen poistumispäivää ilmoitettuun sähköpostiosoitteeseen.  
+
+### Rekisteröidyn oikeudet 
+
+Pyytää rekisterinpitäjältä pääsy häntä itseään koskeviin henkilötietoihin sekä oikeus pyytää kyseisten tietojen oikaisemista tai poistamista. 
+
+Pyytää rekisterinpitäjältä häntä itseään koskevien henkilötietojen käsittelyn rajoittamista tai vastustaa käsittelyä sekä oikeutta siirtää tiedot järjestelmästä toiseen. 
+
+Niiltä osin kuin henkilötietojen käsittely perustuu rekisteröidyn suostumukseen, oikeus peruuttaa suostumus milloin tahansa, tämän vaikuttamatta suostumuksen perusteella ennen sen peruuttamista suoritetun käsittelyn lainmukaisuuteen. 
+
+Tehdä valitus henkilötiedon käsittelystä kansalliselle valvontaviranomaiselle, jos rekisteröity katsoo, että häntä koskevien henkilötietojen käsittelyssä rikotaan EU:n yleistä tietosuoja-asetusta. 
+
+Voit tehdä oikeuksiesi käyttämistä koskevan pyynnön palvelussa.
 
 ![logo](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/logo_dark.png)
