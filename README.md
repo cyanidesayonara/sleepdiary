@@ -6,7 +6,7 @@ Tiimi: Marja, Pekka, Hanna, Santtu
 
 Projektin tarkoituksena on toteuttaa ja julkaista verkkopohjainen unipäiväkirjasovellus. Unipäiväkirjan laatimisessa sovelletaan Työterveyslaitoksen ja Käypä hoito -suosituksen mukaisia pohjia, joita lääkäri voi hyödyntää anamneesityökaluna. Käyttäjä on kuka tahansa, joka haluaa seurata ja selvittää omaa unirytmiään ja siihen vaikuttaneita ulkoisia asioita. Käyttäjä syöttää sovellukseen nukahtamis- ja heräämisajat sekä muita mahdollisia huomioita edellisestä unijaksosta. Käyttäjä saa palvelusta tiedon edellisistä uniajoistaan vertailua ja johtopäätöksiä varten. Projektin päättyessä valmiina on visuaalisesti miellyttävä ja teknisesti toimiva sovellusratkaisu.
 
-Palvelutoteutaan Java Springboot kehystä käyttäen ja thymeleaf template engineä hyödyntäen. Tietokantajärejstelmänä toimii MariaDB. Sovelluksesta tehdään responsiivinen eli se toimii luontevasti kaikilla päätelaitteilla.
+Palvelu toteutetaan Java Spring Boot -kehystä käyttäen ja Thymeleaf template engineä hyödyntäen. Tietokantajärjestelmänä toimii PostgreSQL. Sovelluksesta tehdään responsiivinen eli se toimii luontevasti kaikilla päätelaitteilla.
 
 ## Järjestelmän määrittely
 
@@ -139,14 +139,14 @@ Lataa ja asenna [Java](https://www.oracle.com/technetwork/java/javase/downloads/
  - Käynnistä React-sovellus: `npm start`
 
 Tietokannan määrittely:
-- PostgreSQL:n [asentamisen](http://www.postgresqltutorial.com/install-postgresql/) sovellukselle voidaan luoda käyttäjä, salasana tälle käyttäjälle, tietokanta ja antaa käyttäjälle oikeudet tietokantaan. Nämä voidaan asettaa ottamalla yhteys PostgreSQL-tietokantapalvelimelle [psql-terminaaliohjelman](http://www.postgresqltutorial.com/connect-to-postgresql-database/) avulla:
+- PostgreSQL:n [asentamisen](http://www.postgresqltutorial.com/install-postgresql/) jälkeen sovellukselle voidaan luoda käyttäjä, salasana tälle käyttäjälle, tietokanta ja antaa käyttäjälle oikeudet tietokantaan. Nämä voidaan asettaa ottamalla yhteys PostgreSQL-tietokantapalvelimelle [psql-terminaaliohjelman](http://www.postgresqltutorial.com/connect-to-postgresql-database/) avulla:
 
 - `create user kayttaja;`
 - `alter user kayttaja with encrypted password '<vahva salasana>';`
 - `create database tietokannan_nimi;`
 - `grant all privileges on database tietokannan_nimi to kayttaja;`
 
-Spring boot-sovelluksessa oleva riippuvuus pom.xml-tiedostossa:
+Spring Boot -sovelluksessa oleva riippuvuus pom.xml-tiedostossa:
 
 ```xml
 <dependency>
