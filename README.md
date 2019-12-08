@@ -127,26 +127,91 @@ Tänne kirjataan myös lopuksi järjestelmän tunnetut ongelmat, joita ei ole ko
 
 ## Asennustiedot
 
-Järjestelmän asennus on syytä dokumentoida kahdesta näkökulmasta:
+### Järjestelmän kehitysympäristö: 
 
--   järjestelmän kehitysympäristö: miten järjestelmän kehitysympäristön saisi
-    rakennettua johonkin toiseen koneeseen
+Lataa ja asenna [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html), 
+ [Eclipse](https://www.eclipse.org/downloads/), [Node](https://nodejs.org/en/download/), [Maven](https://maven.apache.org/download.cgi), [Git](https://git-scm.com/downloads),  [Lombok](https://projectlombok.org/setup/eclipse) ja [PostgreSQL](https://www.postgresql.org/download/).
 
--   järjestelmän asentaminen tuotantoympäristöön: miten järjestelmän saisi
-    asennettua johonkin uuteen ympäristöön.
+ - Kloonaa projekti: `git clone https://github.com/hannayj/sleepdiary.git`
+ - Käynnistä Spring Boot -sovellus: `mvn spring-boot:run`
+ - `cd frontend`
+ - Asenna riippuvuudet: `npm install`
+ - Käynnistä React-sovellus: `npm start`
 
-Asennusohjeesta tulisi ainakin käydä ilmi, miten käytettävä tietokanta ja
-käyttäjät tulee ohjelmistoa asentaessa määritellä (käytettävä tietokanta,
-käyttäjätunnus, salasana, tietokannan luonti yms.).
+Tietokannan määrittely:
+- PostgreSQL:n [asentamisen](http://www.postgresqltutorial.com/install-postgresql/) sovellukselle voidaan luoda käyttäjä, salasana tälle käyttäjälle, tietokanta ja antaa käyttäjälle oikeudet tietokantaan. Nämä voidaan asettaa ottamalla yhteys PostgreSQL-tietokantapalvelimelle [psql-terminaaliohjelman](http://www.postgresqltutorial.com/connect-to-postgresql-database/) avulla:
+
+- `create user kayttaja;`
+- `alter user kayttaja with encrypted password '<vahva salasana>';`
+- `create database tietokannan_nimi;`
+- `grant all privileges on database tietokannan_nimi to kayttaja;`
+
+Spring boot-sovelluksessa oleva riippuvuus pom.xml-tiedostossa:
+
+```xml
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+src/main/resources/application.properties-tiedosto:
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/tietokannan_nimi
+spring.datasource.username=kayttaja
+spring.datasource.password=salasana
+spring.jpa.show-sql=true
+
+## Hibernaten ominaisuudet
+# Tämä asetetaan, jotta Hibernate muodostaa paremmin SQL:ää valitulle tietokannalle
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto = create-drop
+```
+Vaihtoehtoisesti voi käyttää tietokannan pääkäyttäjän tietoja (jotka määriteltiin asentaessa PostgreSQL:ää):
+```properties
+spring.datasource.username=postgres
+spring.datasource.password=root_salasana
+```
+### Järjestelmän asentaminen tuotantoympäristöön:
+
+- asenna [heroku cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) ja luo [heroku-tili](https://signup.heroku.com/)
+- asenna heroku deploy CLI plugin: `heroku plugins:install heroku-cli-deploy`
+- luo uusi sovellus Herokuun komennolla: `heroku create`
+- luo JAR-tiedosto: `mvn install package`
+- sovelluksen hakemistossa: `heroku deploy:jar target/sovelluksen_nimi-{ version }.jar`
+- PostgreSQL-tietokannan liittäminen sovellukseen: `heroku addons:create heroku-postgresql`
+- jotta saat yhteyden tietokantaan, löydät DATABASE_URL:in listaamalla konfiguraatiotiedot komennolla: `heroku config`
+- pom.xml-tiedostossa tulee olla edellä mainittu posgresql-riippuvuus
+- lisää mahdollisia konfiguraatiotietoja application.properties-tiedostoon:
+```properties
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.maxActive=10
+spring.datasource.maxIdle=5
+spring.datasource.minIdle=2
+spring.datasource.initialSize=5
+spring.datasource.removeAbandoned=true
+```
+- tietokannan url:n voi asettaa applications.yml-tiedostossa:
+```properties
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+```
+- Proctfile-tiedostossa: 
+`web: java -Dspring.datasource.url=jdbc:postgresql://<tietokannan url>&sslmode=require -jar sleepdiary/target/sleepdiary-0.0.1-SNAPSHOT.jar`
+
+Lisätietoa [tästä](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku) ja [tästä](https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java#using-the-jdbc_database_url) linkistä.
 
 ## Käynnistys- ja käyttöohje
 
-Tyypillisesti tässä riittää kertoa ohjelman käynnistykseen tarvittava URL sekä
-mahdolliset kirjautumiseen tarvittavat tunnukset. Jos järjestelmän
-käynnistämiseen tai käyttöön liittyy joitain muita toimenpiteitä tai toimintajärjestykseen liittyviä asioita, nekin kerrotaan tässä yhteydessä.
+Kehitysympäristössä: käynnistä sleepdiary-sovellus Eclipsessä ja React-sovellus frontend-kansiosta.
+Avaa selaimessa [http://localhost:3000](http://localhost:3000).
 
-Usko tai älä, tulet tarvitsemaan tätä itsekin, kun tauon jälkeen palaat
-järjestelmän pariin !
+Projekti on julkaistu Herokussa ja löytyy osoitteesta: https://sleepdiary1.herokuapp.com/
 
 ## Tietosuojailmoitus
 
