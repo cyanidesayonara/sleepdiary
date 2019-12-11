@@ -97,7 +97,11 @@ Kaavio
 > externalType | int | Seikan tyyppi.
 > quantity | int | Seikan määrä, esim. alkoholiannokset.
 
-## Tekninen kuvaus, jonka tietoja voidaan tarkastella
+## Tekninen kuvaus
+
+![diagram](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/Tekninen_kuvaus.png)
+
+Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittymä on React-applikaationa ja tietokantana on PostgreSQL. 
 
 Teknisessä kuvauksessa esitetään järjestelmän toteutuksen suunnittelun tekniset
 ratkaisut, esim.
