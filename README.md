@@ -108,8 +108,12 @@ Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittym
 > Endpoint | GET | Vastaus GET | POST | Parametrit | Vastaus POST
 > -------- |--- | ----------- |---- | ---------- | ------------
 > /[resurssi] | Hae kaikki [resurssit]. | 200 tai 404 | Lisää uusi resurssi. | JSON muodossa uuden resurssin pakolliset tiedot. | 201 Created (URI Location-headerissa  ja esitys bodyssa) tai 400 Bad request
-> /[resurssi]/[id] | Hae unijakso 1. | 200 tai 404
+> /[resurssi]/[id] | Hae [resurssi] [id]. | 200 tai 404
 > /users/[id]/[resurssi]|Hae käyttäjän [id] kaikki [resurssit].|200 tai 404
+> --------------
+>  Endpoint | PUT | Parametrit | Vastaus PUT | DELETE | Vastaus DELETE
+> -------- |--- | ---- | ----------- |----  | ------------
+> /[resurssi]/[id] | päivitä [resurssi] [id] | JSON muodossa resurssin pakolliset tiedot. | 200 (URI Location-headerissa  ja esitys bodyssa) tai 400 Bad request | Poista [resurssi] [id] | 200 tai 404
 > --------------
 
 #### Saatavilla olevat resurssit
