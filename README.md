@@ -44,7 +44,7 @@ Käyttöliittymäkaavio, tarkastelija
 ## Tietokanta
 
 Kaavio
-![tietokantakaavio](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/DB_final.PNG)
+![tietokantakaavio](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/DB_fixed.png)
 
 > ### User
 > _User-taulu sisältää käyttäjätilit._
@@ -54,6 +54,9 @@ Kaavio
 > user_id | int PK | Käyttäjän id
 > name | varchar(50) |  Tilin nimimerkki
 > password | varchar(50) | Tilin salasana
+> firstname | varchar(50) | Käyttäjän etunimi
+> lastname | varchar(50) | Käyttäjän sukunimi
+> email | varchar(50) | Käyttäjän sähköpostiosoite
 > userLevel_id | int | Käyttäjätason id
 
 > ### Permission
