@@ -101,24 +101,23 @@ Kaavio
 
 ![diagram](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/Tekninen_kuvaus.png)
 
-Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittymä on React-applikaationa ja tietokantana on PostgreSQL. 
+Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittymä on React-applikaatio ja tietokantana on PostgreSQL. 
 
-Teknisessä kuvauksessa esitetään järjestelmän toteutuksen suunnittelun tekniset
-ratkaisut, esim.
--   Missä mikäkin järjestelmän komponentti ajetaan (tietokone, palvelinohjelma)
-    ja komponenttien väliset yhteydet (vaikkapa tähän tyyliin:
-    https://security.ufl.edu/it-workers/risk-assessment/creating-an-information-systemdata-flow-diagram/)
--   Palvelintoteutuksen yleiskuvaus
--   Keskeisten rajapintojen kuvaukset, esimerkit client-server -rajapinnan käytöstä (sekvenssikaaviot)
--   Toteutuksen yleiset periaatteet, esim. käyttäjän tunnistus, istunnonhallinta.
 
-Tämän lisäksi
+### Rajapinnan kuvaus
+> Endpoint | GET | Vastaus GET | POST | Parametrit | Vastaus POST
+> -------- |--- | ----------- |---- | ---------- | ------------
+> /[resurssi] | Hae kaikki [resurssit]. | 200 tai 404 | Lisää uusi resurssi. | JSON muodossa uuden resurssin pakolliset tiedot. | 201 Created (URI Location-headerissa  ja esitys bodyssa) tai 400 Bad request
+> /[resurssi]/[id] | Hae unijakso 1. | 200 tai 404
+> /users/[id]/[resurssi]|Hae käyttäjän [id] kaikki [resurssit].|200 tai 404
+> --------------
 
--   ohjelmakoodin tulee olla kommentoitua
--   luokkien, metodien ja muuttujien tulee olla kuvaavasti nimettyjä ja noudattaa
-    johdonmukaisia nimeämiskäytäntöjä
--   ohjelmiston pitää olla organisoitu komponentteihin niin, että turhalta toistolta
-    vältytään
+#### Saatavilla olevat resurssit
+> Resurssin nimi |
+> --------------
+> sleepperiods |
+> comments |
+> externals |
 
 ## Testaus
 
