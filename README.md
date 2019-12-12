@@ -107,13 +107,13 @@ Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittym
 ### Rajapinnan kuvaus
 > Endpoint | GET | Vastaus GET | POST | Parametrit | Vastaus POST
 > -------- |--- | ----------- |---- | ---------- | ------------
-> /[resurssi] | Hae kaikki [resurssit]. | 200 tai 404 | Lisää uusi resurssi. | JSON muodossa uuden resurssin pakolliset tiedot. | 201 Created (URI Location-headerissa  ja esitys bodyssa) tai 400 Bad request
-> /[resurssi]/[id] | Hae [resurssi] [id]. | 200 tai 404
-> /users/[id]/[resurssi]|Hae käyttäjän [id] kaikki [resurssit].|200 tai 404
+> /[resurssi] | Hae kaikki [resurssit]. | HTTP 200 OK ja kaikki löydetyt [resurssit] | Lisää uusi resurssi. | JSON muodossa uuden resurssin pakolliset tiedot. | 201 Created (URI Location-headerissa  ja esitys bodyssa) tai 409 Conflict
+> /[resurssi]/[id] | Hae [resurssi] [id]. | löydetty [resurssi] JSON-muodossa ja 200 tai 409 Conflict
+> /users/[id]/[resurssi]|Hae käyttäjän [id] kaikki [resurssit].| kaikki löydetyt [resurssit] 200 tai 409
 > --------------
 >  Endpoint | PUT | Parametrit | Vastaus PUT | DELETE | Vastaus DELETE
 > -------- |--- | ---- | ----------- |----  | ------------
-> /[resurssi]/[id] | päivitä [resurssi] [id] | JSON muodossa resurssin pakolliset tiedot. | 200 (URI Location-headerissa  ja esitys bodyssa) tai 400 Bad request | Poista [resurssi] [id] | 200 tai 404
+> /[resurssi]/[id] | päivitä [resurssi] [id] | JSON muodossa resurssin pakolliset tiedot. | 200 (URI Location-headerissa  ja esitys bodyssa) tai 409 Conflict | Poista [resurssi] [id] | 200 tai 409
 > --------------
 
 #### Saatavilla olevat resurssit
@@ -121,7 +121,8 @@ Järjestelmän palvelin toteutettiin Spring Boot -frameworkilla, käyttöliittym
 > --------------
 > sleepperiods |
 > comments |
-> externals |
+> externals |  
+> users |
 
 ## Testaus
 
