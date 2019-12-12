@@ -250,6 +250,6 @@ Niiltä osin kuin henkilötietojen käsittely perustuu rekisteröidyn suostumuks
 
 Tehdä valitus henkilötiedon käsittelystä kansalliselle valvontaviranomaiselle, jos rekisteröity katsoo, että häntä koskevien henkilötietojen käsittelyssä rikotaan EU:n yleistä tietosuoja-asetusta. 
 
-Voit tehdä oikeuksiesi käyttämistä koskevan pyynnön palvelussa.
+Oikeuksien käyttämistä koskevan pyynnön voi jatkossa tehdä palvelussa.
 
 ![logo](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/logo_dark.png)
