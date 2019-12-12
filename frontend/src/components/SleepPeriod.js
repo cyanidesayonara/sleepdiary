@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { ListGroupItem, Button } from 'react-bootstrap';
 
 const SleepPeriod = ({
   sleepPeriod,
@@ -17,7 +17,7 @@ const SleepPeriod = ({
   }
 
   return (
-    <div className='product clearfix'>
+    <ListGroupItem>
       { editMode === false && 
         <div>
           <a href={ '/sleepPeriods/' + sleepPeriod.id }>
@@ -71,7 +71,7 @@ const SleepPeriod = ({
           }} variant="success" size="sm">Save</Button>
         </div>
       }
-    </div>
+    </ListGroupItem>
   )
 }
 

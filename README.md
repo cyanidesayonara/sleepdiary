@@ -187,7 +187,7 @@ spring.datasource.password=root_salasana
 - sovelluksen hakemistossa: `heroku deploy:jar target/sovelluksen_nimi-{ version }.jar`
 - PostgreSQL-tietokannan liittäminen sovellukseen: `heroku addons:create heroku-postgresql`
 - jotta saat yhteyden tietokantaan, löydät DATABASE_URL:in listaamalla konfiguraatiotiedot komennolla: `heroku config`
-- pom.xml-tiedostossa tulee olla edellä mainittu posgresql-riippuvuus
+- pom.xml-tiedostossa tulee olla edellä mainittu postgresql-riippuvuus
 - lisää mahdollisia konfiguraatiotietoja application.properties-tiedostoon:
 ```properties
 spring.datasource.driverClassName=org.postgresql.Driver
@@ -205,7 +205,7 @@ spring:
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
 ```
-- Proctfile-tiedostossa: 
+- Procfile-tiedostossa: 
 `web: java -Dspring.datasource.url=jdbc:postgresql://<tietokannan url>&sslmode=require -jar sleepdiary/target/sleepdiary-0.0.1-SNAPSHOT.jar`
 
 Lisätietoa [tästä](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku) ja [tästä](https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java#using-the-jdbc_database_url) linkistä.

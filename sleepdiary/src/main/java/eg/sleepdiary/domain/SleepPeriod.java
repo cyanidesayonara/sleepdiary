@@ -28,7 +28,7 @@ public class SleepPeriod {
 	private LocalDateTime endTime;
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="userid")
+	@JoinColumn(name="users_id")
 	private User user;
 
 	public SleepPeriod() {

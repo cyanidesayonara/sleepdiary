@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "\"user\"")
+@Table(name = "users")
 public class User {
 
 	@Id

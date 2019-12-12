@@ -1,6 +1,8 @@
 import React from 'react';
 import SleepPeriod from './SleepPeriod'
 import AddSleepPeriodForm from './AddSleepPeriodForm'
+import { ListGroup } from 'react-bootstrap';
+import Filter from './Filter'
 
 const SleepPeriods = ({
     sleepPeriods,
@@ -25,17 +27,25 @@ const SleepPeriods = ({
         endTime={ endTime }
         setEndTime={ setEndTime }
       />
+      {/* <Filter
+        filterStartDate={filterStartDate}
+        setFilterStartDate={setFilterStartDate}
+        filterEndDate={filterEndDate}
+        setFilterEndDate={setFilterEndDate}
+      /> */}
       <h2>
         Sleep periods
       </h2>
-      { sleepPeriods.map((sleepPeriod) => 
-        <SleepPeriod
-          key={ sleepPeriod.id }
-          sleepPeriod={ sleepPeriod }
-          updateSleepPeriod={ updateSleepPeriod }
-          removeSleepPeriod={ removeSleepPeriod }
-        />
-      ) }
+      <ListGroup>
+        { sleepPeriods.map((sleepPeriod) => 
+          <SleepPeriod
+            key={ sleepPeriod.id }
+            sleepPeriod={ sleepPeriod }
+            updateSleepPeriod={ updateSleepPeriod }
+            removeSleepPeriod={ removeSleepPeriod }
+          />
+        ) }
+      </ListGroup>
     </div>
   )
 }

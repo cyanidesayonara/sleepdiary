@@ -35,7 +35,7 @@ public class Comment {
 	private LocalDateTime commentDate;
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="userid")
+	@JoinColumn(name="users_id")
 	private User user;
 	private SleepQuality sleepQuality;
 	

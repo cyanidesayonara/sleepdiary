@@ -6,6 +6,7 @@ import externalService from './services/externals'
 import userService from './services/users'
 import accountService from './services/accounts'
 
+import SleepPeriodTimeline from './components/SleepPeriodTimeline'
 import SleepPeriods from './components/SleepPeriods'
 import Settings from './components/Settings'
 import Navigation from './components/Navigation'
@@ -14,6 +15,8 @@ import Externals from './components/Externals'
 import User from './components/User'
 import FilteredView from './components/FilteredView'
 import DateSelect from './components/DateSelect'
+
+import { Jumbotron, Button, Tabs, Tab } from 'react-bootstrap';
 
 const App = () => {
   const [sleepPeriods, setSleepPeriods] = useState([])
@@ -65,10 +68,10 @@ const App = () => {
       .then(externals => setExts(externals))
   }
 
-  const fetchUsers = () => {
+  const fetchUser = () => {
     userService
-    .getAll()
-    .then(users => setUser(users[0]))
+      .getAll()
+      .then(users => setUser(users[0]))
   }
 
   const login = () => async (event) => {
@@ -84,6 +87,7 @@ const App = () => {
       window.localStorage.setItem('user', JSON.stringify(user))
     } catch (e) {
       console.log(e)
+      fetchUser()
     }
   }
 
@@ -92,6 +96,10 @@ const App = () => {
     if(now.getHours() < 12) {
       setDateFilter(new Date(now.getTime() - (86400000 * noPeriods)))
     }
+  }
+
+  const logout = () => () => {
+    setUser('')
   }
 
   const addSleepPeriod = () => (event) => {
@@ -267,173 +275,127 @@ const App = () => {
   return (
     <div className='container'>
       <Router>
-        <Navigation />
+        <Navigation
+          user={user}
+          login={login}
+          logout={logout}
+        />
         <Switch>
-        <Route path="/settings">
-            <Settings />
-            <User 
-            user={user}
-            name={name}
-            setName={setName}
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            updateUser={updateUser}
-          />
-          </Route>
-          <Route exact path="/">
+          { !user &&
+            <Route exact path="/">
+              <Jumbotron>
+                <h1>Welcome to Sleep Diary</h1>
+                <p>
+                  Sleep diary is a thing
+                </p>
+                <p>
+                  <Button variant="primary">Learn more</Button>
+                </p>
+              </Jumbotron>
+            </Route>
+          }
+          { user &&
             <>
-            <DateSelect 
-              startDate={dateFilter}
-              handleDateChange={handleDatePickerChange}
-              sleepPeriods={sleepPeriods}
-              length={noPeriods}
-              setLength={handleLengthChange}
-            />
-            <FilteredView 
-              date={dateFilter}
-              length={noPeriods}
-              sleeps={sleepPeriods}
-              comments={comments}
-              exts={exts}
-              updateSleepPeriod={updateSleepPeriod}
-              removeSleepPeriod={removeSleepPeriod}
-              deleteComment={deleteComment}
-              updateComment={updateComment}
-              deleteExternal={deleteExternal}
-              updateExternal={updateExternal}
-            />
-            <SleepPeriods
-              sleepPeriods={filteredSleepPeriods}
-               addSleepPeriod={addSleepPeriod}
-               startTime={startTime}
-               setStartTime={setStartTime}
-               endTime={endTime}
-               setEndTime={setEndTime}
-               filterStartDate={filterStartDate}
-               setFilterStartDate={setFilterStartDate}
-               filterEndDate={filterEndDate}
-               setFilterEndDate={setFilterEndDate}
-               updateSleepPeriod={updateSleepPeriod}
-               removeSleepPeriod={removeSleepPeriod}
-             />
-             <Comments
-               comments={comments}
-               comment={comment}
-               handleCommentChange={handleCommentChange}
-               commentDate={commentDate}
-               handleDateChange={handleCommentDateChange}
-               sleepQuality={sleepQuality}
-               handleQualityChange={handleQualityChange}
-               addComment={addComment}
-               deleteComment={deleteComment}
-               updateComment={updateComment}
-              />
-              <Externals
-              externals={exts}
-              addExternal={addExt}
-              externalType={externalType}
-              handleExternalTypeChange={handleExtTypeChange}
-              externalDate={externalDate}
-              handleDateChange={handleExtDateChange}
-              externalQuantityValue={quantity}
-              handleQuantityChange={handleQuantityChange}
-              deleteExternal={deleteExternal}
-              updateExternal={updateExternal}
-              />
+              <Route exact path="/">
+                <>
+                  <Tabs defaultActiveKey="timeline" id="uncontrolled-tab-example">
+                    <Tab eventKey="timeline" title="Timeline">
+                      <DateSelect 
+                        startDate={dateFilter}
+                        handleDateChange={handleDatePickerChange}
+                        sleepPeriods={sleepPeriods}
+                        length={noPeriods}
+                        setLength={handleLengthChange}
+                      />
+                      <FilteredView 
+                        date={dateFilter}
+                        length={noPeriods}
+                        sleeps={sleepPeriods}
+                        comments={comments}
+                        exts={exts}
+                        updateSleepPeriod={updateSleepPeriod}
+                        removeSleepPeriod={removeSleepPeriod}
+                        deleteComment={deleteComment}
+                        updateComment={updateComment}
+                        deleteExternal={deleteExternal}
+                        updateExternal={updateExternal}
+                      />
+                      <SleepPeriodTimeline
+                        sleepPeriods={sleepPeriods}
+                        comments={comments}
+                        externals={exts}
+                        startDate={dateFilter}
+                      />
+                    </Tab>
+                    <Tab eventKey="sleepPeriods" title="Sleep Periods">
+                      <SleepPeriods
+                        sleepPeriods={filteredSleepPeriods}
+                        addSleepPeriod={addSleepPeriod}
+                        startTime={startTime}
+                        setStartTime={setStartTime}
+                        endTime={endTime}
+                        setEndTime={setEndTime}
+                        filterStartDate={filterStartDate}
+                        setFilterStartDate={setFilterStartDate}
+                        filterEndDate={filterEndDate}
+                        setFilterEndDate={setFilterEndDate}
+                        updateSleepPeriod={updateSleepPeriod}
+                        removeSleepPeriod={removeSleepPeriod}
+                      />
+                    </Tab>
+                    <Tab eventKey="comments" title="Comments">
+                      <Comments
+                        comments={comments}
+                        comment={comment}
+                        handleCommentChange={handleCommentChange}
+                        commentDate={commentDate}
+                        handleDateChange={handleCommentDateChange}
+                        sleepQuality={sleepQuality}
+                        handleQualityChange={handleQualityChange}
+                        addComment={addComment}
+                        deleteComment={deleteComment}
+                        updateComment={updateComment}
+                      />
+                    </Tab>
+                    <Tab eventKey="externals" title="Externals">
+                      <Externals
+                        externals={exts}
+                        addExternal={addExt}
+                        externalType={externalType}
+                        handleExternalTypeChange={handleExtTypeChange}
+                        externalDate={externalDate}
+                        handleDateChange={handleExtDateChange}
+                        externalQuantityValue={quantity}
+                        handleQuantityChange={handleQuantityChange}
+                        deleteExternal={deleteExternal}
+                        updateExternal={updateExternal}
+                      />
+                    </Tab>
+                  </Tabs>
+                </>
+              </Route>
+              <Route path="/settings">
+                {/* <Settings /> */}
+                <User
+                  user={user}
+                  name={name}
+                  setName={setName}
+                  firstName={firstName}
+                  setFirstName={setFirstName}
+                  lastName={lastName}
+                  setLastName={setLastName}
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  updateUser={updateUser}
+                />
+              </Route>
             </>
-          </Route>
+          }
         </Switch>
       </Router>
     </div>
-  //   <div className="container">
-  //   <Header changeView={changeView} />
-  //   <Nav changeView={changeView} />
-  //   <Router>
-  //     <Navigation />
-  //     <Switch>
-  //       <Route exact path="/">
-  //         <>
-  //           <DateSelect
-  //             startDate={dateFilter}
-  //             handleDateChange={handleDatePickerChange}
-  //             sleepPeriods={sleepPeriods}
-  //           />
-  //           <FilteredView
-  //             date={dateFilter}
-  //             sleeps={sleepPeriods}
-  //             comments={comments}
-  //             exts={exts}
-  //             updateSleepPeriod={updateSleepPeriod}
-  //             removeSleepPeriod={removeSleepPeriod}
-  //             deleteComment={deleteComment}
-  //             updateComment={updateComment}
-  //           />
-  //           <SleepPeriods
-  //             sleepPeriods={filteredSleepPeriods}
-  //             addSleepPeriod={addSleepPeriod}
-  //             startTime={startTime}
-  //             setStartTime={setStartTime}
-  //             endTime={endTime}
-  //             setEndTime={setEndTime}
-  //             filterStartDate={filterStartDate}
-  //             setFilterStartDate={setFilterStartDate}
-  //             filterEndDate={filterEndDate}
-  //             setFilterEndDate={setFilterEndDate}
-  //             updateSleepPeriod={updateSleepPeriod}
-  //             removeSleepPeriod={removeSleepPeriod}
-  //           />
-  //           <Comments
-  //             comments={comments}
-  //             comment={comment}
-  //             handleCommentChange={handleCommentChange}
-  //             commentDate={commentDate}
-  //             handleDateChange={handleCommentDateChange}
-  //             sleepQuality={sleepQuality}
-  //             handleQualityChange={handleQualityChange}
-  //             addComment={addComment}
-  //             deleteComment={deleteComment}
-  //             updateComment={updateComment}
-  //           />
-  //           <Externals
-  //             externals={exts}
-  //             addExternal={addExt}
-  //             externalType={externalType}
-  //             handleExternalTypeChange={handleExtTypeChange}
-  //             externalDate={externalDate}
-  //             handleDateChange={handleExtDateChange}
-  //             externalQuantityValue={quantity}
-  //             handleQuantityChange={handleQuantityChange}
-  //             deleteExternal={deleteExternal}
-  //             updateExternal={updateExternal}
-  //           />
-  //         </>
-  //       </Route>
-  //       <Route path="/settings">
-  //         <User
-  //           user={user}
-  //           name={name}
-  //           setName={setName}
-  //           firstName={firstName}
-  //           setFirstName={setFirstName}
-  //           lastName={lastName}
-  //           setLastName={setLastName}
-  //           email={email}
-  //           setEmail={setEmail}
-  //           password={password}
-  //           setPassword={setPassword}
-  //           updateUser={updateUser}
-  //         />
-  //         <Settings />
-  //       </Route>
-  //     </Switch>
-  //   </Router>
-  // </div>    
   );
 }
 
