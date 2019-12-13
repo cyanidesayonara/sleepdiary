@@ -6,9 +6,7 @@ import externalService from './services/externals'
 import userService from './services/users'
 import accountService from './services/accounts'
 
-import SleepPeriodTimeline from './components/SleepPeriodTimeline'
 import SleepPeriods from './components/SleepPeriods'
-import Settings from './components/Settings'
 import Navigation from './components/Navigation'
 import Comments from './components/Comments'
 import Externals from './components/Externals'
@@ -46,7 +44,7 @@ const App = () => {
     fetchSleepPeriods()
     fetchComments()
     fetchExternals()
-    fetchUsers()
+    fetchUser()
     setCurrentPeriodStart()
   }, [])
 
@@ -320,12 +318,6 @@ const App = () => {
                         deleteExternal={deleteExternal}
                         updateExternal={updateExternal}
                       />
-                      <SleepPeriodTimeline
-                        sleepPeriods={sleepPeriods}
-                        comments={comments}
-                        externals={exts}
-                        startDate={dateFilter}
-                      />
                     </Tab>
                     <Tab eventKey="sleepPeriods" title="Sleep Periods">
                       <SleepPeriods
@@ -375,7 +367,6 @@ const App = () => {
                 </>
               </Route>
               <Route path="/settings">
-                {/* <Settings /> */}
                 <User
                   user={user}
                   name={name}
