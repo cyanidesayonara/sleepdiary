@@ -6,7 +6,7 @@ Tiimi: Marja, Pekka, Hanna, Santtu
 
 Projektin tarkoituksena on toteuttaa ja julkaista verkkopohjainen unipäiväkirjasovellus. Unipäiväkirjan laatimisessa sovelletaan Työterveyslaitoksen ja Käypä hoito -suosituksen mukaisia pohjia, joita lääkäri voi hyödyntää anamneesityökaluna. Käyttäjä on kuka tahansa, joka haluaa seurata ja selvittää omaa unirytmiään ja siihen vaikuttaneita ulkoisia asioita. Käyttäjä syöttää sovellukseen nukahtamis- ja heräämisajat sekä muita mahdollisia huomioita edellisestä unijaksosta. Käyttäjä saa palvelusta tiedon edellisistä uniajoistaan vertailua ja johtopäätöksiä varten. Projektin päättyessä valmiina on visuaalisesti miellyttävä ja teknisesti toimiva sovellusratkaisu.
 
-Palvelu toteutetaan Java Spring Boot -kehystä käyttäen ja Thymeleaf template engineä hyödyntäen. Tietokantajärjestelmänä toimii PostgreSQL. Sovelluksesta tehdään responsiivinen eli se toimii luontevasti kaikilla päätelaitteilla.
+Palvelu toteutetaan Java Spring Boot -kehystä käyttäen ja käyttöliittymän puolella React-kehystä hyödyntäen. Tietokantajärjestelmänä toimii PostgreSQL. Sovelluksesta tehdään responsiivinen eli se toimii luontevasti kaikilla päätelaitteilla.
 
 ## Järjestelmän määrittely
 
@@ -19,7 +19,7 @@ Järjestelmän toiminnot (peruskäyttäjä)
 - sisäänkirjautuminen
 - tietojen syöttäminen: nukahtamisaika, heräämisaika, unenlaadun arviointi, uneen vaikuttaneet ulkopuoliset seikat.
 - tietojen tarkastelu eri aikaväleillä
-- tietojen muokaaminen
+- tietojen muokkaaminen
 - tietojen poistaminen
 - tarkasteluoikeuden myöntäminen
 - uloskirjautuminen
@@ -60,7 +60,7 @@ Kaavio
 > userLevel_id | int | Käyttäjätason id
 
 > ### Permission
-> _Permission-taulu sisältää luvat käyttäjän tietojen takasteluun. Lupa viittaa yhteen käyttäjään ja sillä on yksi tarkastelija._
+> _Permission-taulu sisältää luvat käyttäjän tietojen tarkasteluun. Lupa viittaa yhteen käyttäjään ja sillä on yksi tarkastelija._
 >
 > Kenttä | Tyyppi | Kuvaus
 > ------ | ------ | ------
@@ -259,5 +259,18 @@ Niiltä osin kuin henkilötietojen käsittely perustuu rekisteröidyn suostumuks
 Tehdä valitus henkilötiedon käsittelystä kansalliselle valvontaviranomaiselle, jos rekisteröity katsoo, että häntä koskevien henkilötietojen käsittelyssä rikotaan EU:n yleistä tietosuoja-asetusta. 
 
 Oikeuksien käyttämistä koskevan pyynnön voi jatkossa tehdä palvelussa.
+
+## Projektin lopuksi
+
+Projektin aikana ehdittiin toteuttaa seuraavat toiminnallisuudet:
+
+- peruskäyttäjän näkymä
+- tietojen syöttö, tarkastelu, muokkaaminen ja poistaminen
+
+Nämä toiminnallisuudet jäivät toteuttamatta:
+
+- rekisteröityminen palveluun, kirjautuminen ja uloskirjautuminen
+- tarkastelijan näkymä ja siihen liittyvät toiminnallisuudet
+- tietojen tarkasteluoikeuksien antaminen
 
 ![logo](https://raw.githubusercontent.com/hannayj/sleepdiary/master/images/logo_dark.png)
